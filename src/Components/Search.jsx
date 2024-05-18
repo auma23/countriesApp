@@ -2,18 +2,17 @@
 
 import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { DarkModeContext } from '../Components/DarkModeContext';
 
 const continents = [
   { value: 'all', label: 'All' },
   { value: 'africa', label: 'Africa' },
   { value: 'asia', label: 'Asia' },
-  { value: 'north america', label: 'North America' },
-  { value: 'south america', label: 'South America' },
-  { value: 'antarctica', label: 'Antarctica' },
+  { value: 'polar', label: 'Polar' },
+  { value: 'americas', label: 'Americas' },
   { value: 'europe', label: 'Europe' },
-  { value: 'australia', label: 'Australia' },
+  { value: 'oceania', label: 'Oceania' },
 ];
 
 const Search = ({ onSearchChange, onFilterChange }) => {
@@ -29,7 +28,7 @@ const Search = ({ onSearchChange, onFilterChange }) => {
   };
 
   const handleContinentChange = (value) => {
-    setSelectedContinent(value);
+    setSelectedContinent(continents.find((continent) => continent.value === value));
     onFilterChange(value);
   };
 
@@ -38,18 +37,24 @@ const Search = ({ onSearchChange, onFilterChange }) => {
   };
 
   return (
-    <div className={`search-and-filter m-6 ${darkMode ? 'dark' : ''}`}>
-      <div className="flex justify-between items-center">
-        <input
-          type="text"
-          className={`search-box px-6 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
-            isOpen ? 'border-gray-500' : ''
-          } ${darkMode ? 'text-gray-100 bg-gray-900 border-gray-700' : 'text-gray-800 bg-gray-100 border-gray-500'}`}
-          placeholder="Search for a country..."
-          value={searchTerm}
-          onChange={handleSearchInputChange}
-        />
-        <div className="filter-by-region relative ml-2">
+    <div className={`search-and-filter mx-auto max-w-screen-lg sm:px-6 lg:px-8 ${darkMode ? 'dark' : ''}`}>
+      <div className="flex flex-col sm:flex-row justify-between items-center">
+        <div className="relative flex items-center mb-4 sm:mb-0">
+          <FontAwesomeIcon
+            icon={faSearch}
+            className={`absolute left-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
+          />
+          <input
+            type="text"
+            className={`search-box pl-10 pr-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+              isOpen ? 'border-gray-500' : ''
+            } ${darkMode ? 'text-gray-100 bg-gray-900 border-gray-700' : 'text-gray-800 bg-gray-100 border-gray-500'}`}
+            placeholder="Search for a country..."
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+        </div>
+        <div className="filter-by-region relative">
           <span className={`${darkMode ? 'text-gray-100' : 'text-gray-600'} mr-4`}>Filter by Region:</span>
           <button
             type="button"
@@ -91,6 +96,4 @@ const Search = ({ onSearchChange, onFilterChange }) => {
 };
 
 export default Search;
-
-
-          
+         
