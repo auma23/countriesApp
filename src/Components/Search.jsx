@@ -61,7 +61,7 @@ const Search = ({ onSearchChange, onFilterChange }) => {
             type="button"
             className={`rounded-md border px-3 py-1 appearance-none focus:outline-none text-gray-800 hover:bg-gray-100 hover:text-gray-800 ${
               isOpen ? 'bg-gray-700 text-gray-100' : ''
-            } ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-800 hover:bg-gray-600' : 'bg-white border-gray-500 text-gray-800 hover:bg-gray-200 hover:text-gray-800'}`}
+            } ${darkMode ? 'bg-gray-800 border-gray-700 text-white hover:bg-gray-600' : 'bg-white border-gray-500 text-gray-800 hover:bg-gray-200 hover:text-gray-800'}`}
             onClick={toggleDropdown}
           >
             <span className="flex items-center">
