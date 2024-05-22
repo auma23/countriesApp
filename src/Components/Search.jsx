@@ -1,6 +1,7 @@
 
 
 import { useState, useContext } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { DarkModeContext } from '../Components/DarkModeContext';
@@ -37,7 +38,7 @@ const Search = ({ onSearchChange, onFilterChange }) => {
   };
 
   return (
-    <div className={`search-and-filter mx-auto max-w-screen-lg sm:px-6 lg:px-8 ${darkMode ? 'dark' : ''}`}>
+    <div className={`search-and-filter  max-w-screen-lg sm:px-6 lg:px-8 ${darkMode ? 'dark' : ''}`}>
       <div className="flex flex-col sm:flex-row justify-between items-center">
         <div className="relative flex items-center mb-4 sm:mb-0">
           <FontAwesomeIcon
@@ -55,12 +56,12 @@ const Search = ({ onSearchChange, onFilterChange }) => {
           />
         </div>
         <div className="filter-by-region relative">
-          <span className={`${darkMode ? 'text-gray-100' : 'text-gray-600'} mr-4`}>Filter by Region:</span>
+          <span className={` mr-4 ml-11 ${darkMode ? 'text-gray-100' : 'text-gray-600'} `}>Filter by Region:</span>
           <button
             type="button"
-            className={`rounded-md border px-3 py-1 appearance-none focus:outline-none hover:bg-gray-700 ${
-              isOpen ? 'bg-gray-700 text-white' : ''
-            } ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-white border-gray-500 text-gray-800 hover:bg-gray-200'}`}
+            className={`rounded-md border px-3 py-1 appearance-none focus:outline-none text-gray-800 hover:bg-gray-100 hover:text-gray-800 ${
+              isOpen ? 'bg-gray-700 text-gray-100' : ''
+            } ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-800 hover:bg-gray-600' : 'bg-white border-gray-500 text-gray-800 hover:bg-gray-200 hover:text-gray-800'}`}
             onClick={toggleDropdown}
           >
             <span className="flex items-center">
@@ -95,5 +96,12 @@ const Search = ({ onSearchChange, onFilterChange }) => {
   );
 };
 
+// Define PropTypes for onSearchChange and onFilterChange
+Search.propTypes = {
+  onSearchChange: PropTypes.func.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+};
+
 export default Search;
+
          
